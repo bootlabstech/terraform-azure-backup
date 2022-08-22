@@ -17,8 +17,8 @@ resource "azurerm_backup_policy_vm" "backup_policy" {
 }
 
 data "azurerm_virtual_machine" "vm" {
-  name                = var.vm_name
-  resource_group_name = var.resource_group_name
+  name                     = var.vm_name
+  resource_group_name      = var.resource_group_name
 }
 
 resource "azurerm_backup_protected_vm" "vm1" {
