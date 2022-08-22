@@ -8,7 +8,7 @@ resource "azurerm_recovery_services_vault" "services_vault" {
 resource "azurerm_backup_policy_vm" "backup_policy" {
   name                = var.backup_policy_name
   resource_group_name = var.resource_group_name
-  recovery_vault_name = azurerm_recovery_services_vault.services_vault_name
+  recovery_vault_name = azurerm_recovery_services_vault.services_vault.name
 
   backup {
     frequency = "Daily"
@@ -23,7 +23,7 @@ data "azurerm_virtual_machine" "vm" {
 
 resource "azurerm_backup_protected_vm" "vm1" {
   resource_group_name = var.resource_group_name
-  recovery_vault_name = azurerm_recovery_services_vault.services_vault_name
+  recovery_vault_name = azurerm_recovery_services_vault.services_vault.name
   source_vm_id        = data.azurerm_virtual_machine.vm.id
   backup_policy_id    = azurerm_backup_policy_vm.backup_policy.id
 }
